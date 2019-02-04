@@ -8,7 +8,10 @@ const app = express();
 // connect to mongodb
 mongoose.connect('mongodb://localhost/ninjago');
 mongoose.Promise = global.Promise;
-useMongoClient: true
+var promise = mongoose.connect('mongodb://localhost/myapp', {
+  useMongoClient: true,
+  /* other options */
+});
 
 //set up static files
 app.use(express.static('public'));
@@ -26,6 +29,6 @@ app.use(function(err, req, res, next){
 });
 
 // listen for requests
-app.listen(process.env.port || 4000, function(){
+app.listen(process.env.PORT, process.env.IP, function(){
     console.log('now listening for requests');
 });
